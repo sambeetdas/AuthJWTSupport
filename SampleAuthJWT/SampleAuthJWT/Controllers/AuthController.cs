@@ -30,6 +30,8 @@ namespace SampleAuthJWT.Controllers
         [HttpPost("createtoken")]
         public IActionResult CreateToken([FromBody] UserModel user)
         {
+            dynamic tokenResult = null;
+
             //Note: This is a Sample app to demonstrate Auth.JWT.
             //Hence authentication is done with static values.
             if (user.Username == "sambeet" && user.Password == "12345")
@@ -45,12 +47,14 @@ namespace SampleAuthJWT.Controllers
                 _reqModel.Subject = "authjwt_subject"; 
                 _reqModel.CustomProperty.Add("CustomField1", "auth_custom1"); 
                 _reqModel.CustomProperty.Add("CustomField2", "auth_custom2");
-            }
-            //Secrect must be from DB or config.
-            string secrect = _configuration.GetSection("AuthJWT").GetSection("Secrect").Value;
 
-            //Below fuction would create the token.
-            var tokenResult = _module.CreateToken(_reqModel, secrect, AlgorithmType.SHA256);
+                //Secrect must be from DB or config.
+                string secrect = _configuration.GetSection("AuthJWT").GetSection("Secrect").Value;
+
+                //Below fuction would create the token.
+                tokenResult = _module.CreateToken(_reqModel, secrect, AlgorithmType.SHA256);
+            }
+            
 
             return Ok(tokenResult);
         }
