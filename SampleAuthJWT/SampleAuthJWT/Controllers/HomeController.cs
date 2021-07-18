@@ -2,7 +2,7 @@
 using SampleAuthJWT.Filter;
 using System.Web.Http.Filters;
 
-namespace SampleAuthJWT.Model
+namespace SampleAuthJWT.Controllers
 {
     [Route("[controller]")]
     [ApiController]
