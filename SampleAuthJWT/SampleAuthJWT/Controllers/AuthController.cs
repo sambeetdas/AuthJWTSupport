@@ -12,7 +12,7 @@ using SampleAuthJWT.Model;
 
 namespace SampleAuthJWT.Controllers
 {
-    [Route("[controller]")]
+
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -27,7 +27,8 @@ namespace SampleAuthJWT.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("createtoken")]
+        [HttpPost]
+        [Route("[action]")]
         public IActionResult CreateToken([FromBody] UserModel user)
         {
             dynamic tokenResult = null;

@@ -11,6 +11,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SampleAuthJWT.Filter;
+using SampleAuthJWT.Middleware;
 
 namespace SampleAuthJWT
 {
@@ -42,7 +43,9 @@ namespace SampleAuthJWT
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseAuthJwtMiddleware();
+
+            app.UseRouting();           
 
             app.UseEndpoints(endpoints =>
             {
